@@ -8,9 +8,9 @@ class Runner {
     constructor(options) {
         this.discord = new discord_js_1.default.Client(options.discord);
         this.accitro = new accitro_1.default.Client(this.discord, options.databaseCredentials, options.accitro);
-        this.modules = options.modules.map((Module) => {
-            const { accitro: { modules } } = this;
-            const module = new Module(modules);
+        this.modules = options.modules.map((classGenerator) => {
+            const { accitro, accitro: { modules } } = this;
+            const module = new (classGenerator(accitro))(modules);
             modules.add(module);
             return module;
         });

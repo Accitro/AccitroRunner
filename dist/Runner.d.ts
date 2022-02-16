@@ -4,7 +4,7 @@ export interface RunnerOptions {
     discord: Discord.ClientOptions;
     accitro: Accitro.ClientOptions;
     databaseCredentials: Accitro.DatabaseCredentials;
-    modules: Array<typeof Accitro.Module>;
+    modules: Array<(client: Accitro.Client) => typeof Accitro.Module>;
 }
 export declare class Runner {
     constructor(options: RunnerOptions);
