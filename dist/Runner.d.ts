@@ -12,3 +12,4 @@ export declare class Runner {
     readonly discord: Discord.Client;
     readonly modules: Array<Accitro.Module>;
 }
+export declare const createInstance: (options: RunnerOptions) => Runner;

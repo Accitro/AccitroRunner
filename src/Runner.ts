@@ -28,3 +28,5 @@ export class Runner {
 
   public readonly modules: Array<Accitro.Module>
 }
+
+export const createInstance = (options: RunnerOptions) => new Runner(options)

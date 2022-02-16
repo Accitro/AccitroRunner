@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Runner = void 0;
+exports.createInstance = exports.Runner = void 0;
 const tslib_1 = require("tslib");
 const discord_js_1 = (0, tslib_1.__importDefault)(require("discord.js"));
 const accitro_1 = (0, tslib_1.__importDefault)(require("accitro"));
@@ -20,3 +20,5 @@ class Runner {
     modules;
 }
 exports.Runner = Runner;
+const createInstance = (options) => new Runner(options);
+exports.createInstance = createInstance;
