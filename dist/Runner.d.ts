@@ -10,6 +10,6 @@ export declare class Runner {
     constructor(options: RunnerOptions);
     readonly accitro: Accitro.Client;
     readonly discord: Discord.Client;
-    readonly modules: Array<Accitro.Module>;
+    readonly modules: Accitro.ModuleManager;
 }
 export declare const createInstance: (options: RunnerOptions) => Runner;

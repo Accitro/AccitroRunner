@@ -13,20 +13,13 @@ export class Runner {
   public constructor (options: RunnerOptions) {
     this.discord = new Discord.Client(options.discord)
     this.accitro = new Accitro.Client(this.discord, options.databaseCredentials, options.accitro)
-
-    this.modules = options.modules.map((classGenerator) => {
-      const { accitro, accitro: { modules } } = this
-      const module = <Accitro.Module> new (<any> (classGenerator(accitro)))(modules)
-
-      modules.add(module)
-      return module
-    })
+    this.modules = this.accitro.modules
+    this.accitro.modules.add(...options.modules.map((classGenerator) => <Accitro.Module> new (<any> (classGenerator(this.accitro)))(this.modules)))
   }
 
   public readonly accitro: Accitro.Client
   public readonly discord: Discord.Client
-
-  public readonly modules: Array<Accitro.Module>
+  public readonly modules: Accitro.ModuleManager
 }
 
 export const createInstance = (options: RunnerOptions) => new Runner(options)
