@@ -9,7 +9,7 @@ class Runner {
         this.discord = new discord_js_1.default.Client(options.discord);
         this.accitro = new accitro_1.default.Client(this.discord, options.databaseCredentials, options.accitro);
         this.modules = this.accitro.modules;
-        this.accitro.modules.add(...options.modules.map((classGenerator) => new (classGenerator(this.accitro))(this.modules)));
+        this.accitro.modules.add(...options.modules.map((classGenerator) => new (typeof (classGenerator) === 'function' ? classGenerator(this.accitro) : classGenerator)(this.modules)));
     }
     accitro;
     discord;
