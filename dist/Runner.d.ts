@@ -6,7 +6,7 @@ export interface RunnerOptions {
     databaseCredentials: Accitro.DatabaseCredentials;
     modules: Array<typeof Accitro.Module>;
     listeners?: {
-        [Property in keyof Accitro.ClientEvents]: (...args: Accitro.ClientEvents[Property]) => Promise<void> | void;
+        [Property in keyof Accitro.ClientEvents]?: (...args: Accitro.ClientEvents[Property]) => Promise<void> | void;
     };
 }
 export declare class Runner {

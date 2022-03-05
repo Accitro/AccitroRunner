@@ -9,7 +9,7 @@ export interface RunnerOptions {
   modules: Array<typeof Accitro.Module>
 
   listeners?: {
-    [Property in keyof Accitro.ClientEvents]: (...args: Accitro.ClientEvents[Property]) => Promise<void> | void
+    [Property in keyof Accitro.ClientEvents]?: (...args: Accitro.ClientEvents[Property]) => Promise<void> | void
   }
 }
 
