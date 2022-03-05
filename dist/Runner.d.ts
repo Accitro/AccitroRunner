@@ -5,6 +5,9 @@ export interface RunnerOptions {
     accitro: Accitro.ClientOptions;
     databaseCredentials: Accitro.DatabaseCredentials;
     modules: Array<typeof Accitro.Module>;
+    listeners?: {
+        [Property in keyof Accitro.ClientEvents]: (...args: Accitro.ClientEvents[Property]) => Promise<void> | void;
+    };
 }
 export declare class Runner {
     constructor(options: RunnerOptions);
