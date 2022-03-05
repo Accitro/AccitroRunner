@@ -6,7 +6,7 @@ export interface RunnerOptions {
   accitro: Accitro.ClientOptions
   databaseCredentials: Accitro.DatabaseCredentials
 
-  modules: Array<((client: Accitro.Client) => typeof Accitro.Module) | typeof Accitro.Module>
+  modules: Array<typeof Accitro.Module>
 }
 
 export class Runner {
@@ -14,7 +14,7 @@ export class Runner {
     this.discord = new Discord.Client(options.discord)
     this.accitro = new Accitro.Client(this.discord, options.databaseCredentials, options.accitro)
     this.modules = this.accitro.modules
-    this.accitro.modules.add(...options.modules.map((classGenerator) => <Accitro.Module> new (<any> (typeof (classGenerator) === 'function' ? (<any> classGenerator)(this.accitro) : classGenerator))(this.modules)))
+    this.accitro.modules.add(...options.modules.map((classGenerator) => <Accitro.Module> new (<any> classGenerator)(this.modules)))
   }
 
   public readonly accitro: Accitro.Client
